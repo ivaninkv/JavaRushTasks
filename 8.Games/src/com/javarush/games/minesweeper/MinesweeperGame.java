@@ -9,6 +9,7 @@ import java.util.List;
 public class MinesweeperGame extends Game {
     private static final int SIDE = 9;
     private GameObject[][] gameField = new GameObject[SIDE][SIDE];
+    private static final Color defaultColor = Color.ORANGE;
     private int countMinesOnField;
     private static final String MINE = "\uD83D\uDCA3";
     private static final String FLAG = "\uD83D\uDEA9";
@@ -28,7 +29,7 @@ public class MinesweeperGame extends Game {
                     countMinesOnField++;
                 }
                 gameField[y][x] = new GameObject(x, y, isMine);
-                setCellColor(x, y, Color.ORANGE);
+                setCellColor(x, y, defaultColor);
             }
         }
         countMineNeighbors();
@@ -93,5 +94,27 @@ public class MinesweeperGame extends Game {
     @Override
     public void onMouseLeftClick(int x, int y) {
         openTile(x, y);
+    }
+
+    @Override
+    public void onMouseRightClick(int x, int y) {
+        markTile(x, y);
+    }
+
+    private void markTile(int x, int y) {
+        GameObject go = gameField[y][x];
+        if (!go.isOpen && (countFlags != 0 || go.isFlag)) {
+            if (!go.isFlag) {
+                go.isFlag = true;
+                countFlags--;
+                setCellValue(x, y, FLAG);
+                setCellColor(x, y, Color.YELLOW);
+            } else {
+                go.isFlag = false;
+                countFlags++;
+                setCellValue(x, y, "");
+                setCellColor(x, y, defaultColor);
+            }
+        }
     }
 }
