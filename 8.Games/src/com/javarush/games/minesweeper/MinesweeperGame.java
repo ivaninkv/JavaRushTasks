@@ -10,13 +10,17 @@ public class MinesweeperGame extends Game {
     private static final int SIDE = 9;
     private GameObject[][] gameField = new GameObject[SIDE][SIDE];
     private static final Color defaultColor = Color.ORANGE;
+
     private int countMinesOnField;
-    private static final String MINE = "\uD83D\uDCA3";
-    private static final String FLAG = "\uD83D\uDEA9";
     private int countFlags;
-    private boolean isGameStopped;
     private int countClosedTiles = SIDE * SIDE;
     private int score = 0;
+
+    private static final String MINE = "\uD83D\uDCA3";
+    private static final String FLAG = "\uD83D\uDEA9";
+
+    private boolean isGameStopped;
+
 
     @Override
     public void initialize() {
