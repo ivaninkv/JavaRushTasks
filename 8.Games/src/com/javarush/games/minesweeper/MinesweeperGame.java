@@ -16,6 +16,7 @@ public class MinesweeperGame extends Game {
     private int countFlags;
     private boolean isGameStopped;
     private int countClosedTiles = SIDE * SIDE;
+    private int score = 0;
 
     @Override
     public void initialize() {
@@ -96,6 +97,8 @@ public class MinesweeperGame extends Game {
                 }
                 setCellValue(x, y, "");
             }
+            score += 5;
+            setScore(score);
             if (countClosedTiles == countMinesOnField) {
                 win();
             }
