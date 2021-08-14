@@ -17,12 +17,12 @@ public class Solution {
         if (decimalNumber <= 0) {
             return "";
         }
-        String binaryNumber = "";
+        StringBuilder binaryNumber = new StringBuilder();
         while (decimalNumber > 0) {
-            binaryNumber = decimalNumber % 2 + binaryNumber;
+            binaryNumber.insert(0, decimalNumber % 2);
             decimalNumber /= 2;
         }
-        return binaryNumber;
+        return binaryNumber.toString();
     }
 
     public static int toDecimal(String binaryNumber) {
