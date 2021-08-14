@@ -22,6 +22,19 @@ public class Game2048 extends Game {
     }
 
     private void createGame() {
+        createNewNumber();
+        createNewNumber();
+    }
 
+    private void createNewNumber() {
+        boolean cellFinded = false;
+        while (!cellFinded) {
+            int x = getRandomNumber(SIDE);
+            int y = getRandomNumber(SIDE);
+            if (gameField[x][y] == 0) {
+                cellFinded = true;
+                gameField[x][y] = getRandomNumber(10) == 9 ? 4 : 2;
+            }
+        }
     }
 }
