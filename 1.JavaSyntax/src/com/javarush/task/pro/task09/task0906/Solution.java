@@ -32,7 +32,7 @@ public class Solution {
         }
         int decimalNumber = 0;
         for (int i = 0; i < binaryNumber.length(); i++) {
-            int number = binaryNumber.charAt(binaryNumber.length() - i - 1) - '0';
+            int number = Character.getNumericValue(binaryNumber.charAt(binaryNumber.length() - i - 1));
             decimalNumber += number * Math.pow(2, i);
         }
         return decimalNumber;
