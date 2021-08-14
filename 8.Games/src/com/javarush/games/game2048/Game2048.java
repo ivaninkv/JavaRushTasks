@@ -28,7 +28,7 @@ public class Game2048 extends Game {
     }
 
     private Color getColorByValue(int value) {
-        if (value == 0){
+        if (value == 0) {
             return Color.values()[value];
         } else {
             int pow = (int) (Math.log(value) / Math.log(2));
@@ -46,10 +46,26 @@ public class Game2048 extends Game {
         while (!cellFound) {
             int x = getRandomNumber(SIDE);
             int y = getRandomNumber(SIDE);
-            if (gameField[x][y] == 0) {
+            if (gameField[y][x] == 0) {
                 cellFound = true;
-                gameField[x][y] = getRandomNumber(10) == 9 ? 4 : 2;
+                gameField[y][x] = getRandomNumber(10) == 9 ? 4 : 2;
             }
         }
+    }
+
+    private boolean compressRow(int[] row) {
+        boolean hasChanges = false;
+        for (int i = 1; i < row.length; i++) {
+            if (row[i] > 0 && row[i - 1] == 0) {
+                int tmp = row[i - 1];
+                row[i - 1] = row[i];
+                row[i] = tmp;
+                if (!hasChanges) {
+                    hasChanges = true;
+                }
+                i = 0;
+            }
+        }
+        return hasChanges;
     }
 }
