@@ -16,8 +16,23 @@ public class Game2048 extends Game {
     private void drawScene() {
         for (int x = 0; x < gameField.length; x++) {
             for (int y = 0; y < gameField[x].length; y++) {
-                setCellColor(x, y, Color.AZURE);
+                setCellColoredNumber(x, y, gameField[y][x]);
             }
+        }
+    }
+
+    private void setCellColoredNumber(int x, int y, int value) {
+        Color color = getColorByValue(value);
+        String cellValue = value == 0 ? "" : String.valueOf(value);
+        setCellValueEx(x, y, color, cellValue);
+    }
+
+    private Color getColorByValue(int value) {
+        if (value == 0){
+            return Color.values()[value];
+        } else {
+            int pow = (int) (Math.log(value) / Math.log(2));
+            return Color.values()[pow];
         }
     }
 
@@ -27,12 +42,12 @@ public class Game2048 extends Game {
     }
 
     private void createNewNumber() {
-        boolean cellFinded = false;
-        while (!cellFinded) {
+        boolean cellFound = false;
+        while (!cellFound) {
             int x = getRandomNumber(SIDE);
             int y = getRandomNumber(SIDE);
             if (gameField[x][y] == 0) {
-                cellFinded = true;
+                cellFound = true;
                 gameField[x][y] = getRandomNumber(10) == 9 ? 4 : 2;
             }
         }
