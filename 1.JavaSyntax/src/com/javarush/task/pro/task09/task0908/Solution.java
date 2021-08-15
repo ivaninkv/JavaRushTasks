@@ -26,15 +26,15 @@ public class Solution {
                 binaryNumber.replaceAll("[" + binSymbols + "]", "").length() != 0) {
             return "";
         }
-        String hexNumber = "";
+        StringBuilder hexNumber = new StringBuilder();
         if (binaryNumber.length() % 4 != 0) {
             binaryNumber = "0".repeat(4 - binaryNumber.length() % 4) + binaryNumber;
         }
         for (int i = 0; i < binaryNumber.length(); i += 4) {
             String str = binaryNumber.substring(i, i + 4);
-            hexNumber += getHexSymbolByBin(str);
+            hexNumber.append(getHexSymbolByBin(str));
         }
-        return hexNumber;
+        return hexNumber.toString();
     }
 
     public static String toBinary(String hexNumber) {
@@ -44,11 +44,11 @@ public class Solution {
                 hexNumber.replaceAll("[" + hexSymbols + "]", "").length() != 0) {
             return "";
         }
-        String binaryNumber = "";
+        StringBuilder binaryNumber = new StringBuilder();
         for (int i = 0; i < hexNumber.length(); i++) {
-            binaryNumber += getBinSymbolByHex(Character.toString(hexNumber.charAt(i)));
+            binaryNumber.append(getBinSymbolByHex(Character.toString(hexNumber.charAt(i))));
         }
-        return binaryNumber;
+        return binaryNumber.toString();
     }
 
     private static String getBinSymbolByHex(String hexSymbol) {
