@@ -32,7 +32,7 @@ public class Solution {
         }
         for (int i = 0; i < binaryNumber.length(); i += 4) {
             String str = binaryNumber.substring(i, i + 4);
-            hexNumber += hexSymbols.charAt(Arrays.asList(hexArray).indexOf(str));
+            hexNumber += getHexSymbolByBin(str);
         }
         return hexNumber;
     }
@@ -46,8 +46,22 @@ public class Solution {
         }
         String binaryNumber = "";
         for (int i = 0; i < hexNumber.length(); i++) {
-            binaryNumber += hexArray[hexSymbols.indexOf(hexNumber.charAt(i))];
+            binaryNumber += getBinSymbolByHex(Character.toString(hexNumber.charAt(i)));
         }
         return binaryNumber;
+    }
+
+    private static String getBinSymbolByHex(String hexSymbol) {
+        return hexArray[hexSymbols.indexOf(hexSymbol)];
+    }
+
+    private static String getHexSymbolByBin(String binSymbol) {
+        String hexSymbol = "";
+        for (int i = 0; i < hexArray.length; i++) {
+            if (hexArray[i].equals(binSymbol)){
+                hexSymbol = hexSymbols.substring(i, i+1);
+            }
+        }
+        return hexSymbol;
     }
 }
