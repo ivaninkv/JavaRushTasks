@@ -17,8 +17,8 @@ public class Solution {
         String newPath = "";
         int startIndex = path.indexOf("jdk");
         int endIndex = path.indexOf("/", startIndex);
-        newPath = path.substring(0, startIndex) + jdk + path.substring(endIndex);
+        String oldJdk = path.substring(startIndex, endIndex);
 
-        return newPath;
+        return path.replace(oldJdk, jdk);
     }
 }
