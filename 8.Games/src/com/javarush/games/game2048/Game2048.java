@@ -2,6 +2,9 @@ package com.javarush.games.game2048;
 
 import com.javarush.engine.cell.*;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class Game2048 extends Game {
     private static final int SIDE = 4;
     private int[][] gameField = new int[SIDE][SIDE];
@@ -120,7 +123,7 @@ public class Game2048 extends Game {
             }
         }
 
-        if (stepDone){
+        if (stepDone) {
             createNewNumber();
         }
     }
@@ -129,5 +132,15 @@ public class Game2048 extends Game {
     }
 
     private void moveUp() {
+    }
+
+    private void rotateClockwise() {
+        int[][] tmp = new int[SIDE][SIDE];
+        for (int y = 0; y < SIDE; y++) {
+            for (int x = 0; x < SIDE; x++) {
+                tmp[y][SIDE - x - 1] = gameField[x][y];
+            }
+        }
+        gameField = tmp;
     }
 }
