@@ -2,12 +2,10 @@ package com.javarush.games.game2048;
 
 import com.javarush.engine.cell.*;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-
 public class Game2048 extends Game {
     private static final int SIDE = 4;
     private int[][] gameField = new int[SIDE][SIDE];
+    private boolean isGameStopped = false;
 
     @Override
     public void initialize() {
@@ -45,6 +43,9 @@ public class Game2048 extends Game {
     }
 
     private void createNewNumber() {
+        if (getMaxTileValue() == 2048){
+            win();
+        }
         boolean cellFound = false;
         while (!cellFound) {
             int x = getRandomNumber(SIDE);
@@ -157,5 +158,21 @@ public class Game2048 extends Game {
             }
         }
         gameField = tmp;
+    }
+
+    private int getMaxTileValue() {
+        int maxValue = 0;
+        for (int y = 0; y < SIDE; y++) {
+            for (int x = 0; x < SIDE; x++) {
+                maxValue = Math.max(maxValue, gameField[x][y]);
+            }
+        }
+
+        return maxValue;
+    }
+
+    private void win() {
+        isGameStopped = true;
+        showMessageDialog(Color.WHITE, "You win!", Color.GREEN, 36);
     }
 }
