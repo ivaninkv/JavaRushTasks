@@ -29,9 +29,9 @@ public class Game2048 extends Game {
 
     private Color getColorByValue(int value) {
         if (value == 0) {
-            return Color.values()[value];
+            return Color.WHITE;
         } else {
-            int pow = (int) (Math.log(value) / Math.log(2));
+            int pow = (int) (Math.log(value) / Math.log(2)) + 1;
             return Color.values()[pow];
         }
     }
@@ -88,15 +88,19 @@ public class Game2048 extends Game {
         switch (key) {
             case UP:
                 moveUp();
+                drawScene();
                 break;
             case DOWN:
                 moveDown();
+                drawScene();
                 break;
             case LEFT:
                 moveLeft();
+                drawScene();
                 break;
             case RIGHT:
                 moveRight();
+                drawScene();
                 break;
             default:
                 break;
@@ -107,6 +111,18 @@ public class Game2048 extends Game {
     }
 
     private void moveLeft() {
+        boolean stepDone = false;
+        for (int[] ints : gameField) {
+            stepDone = stepDone | compressRow(ints);
+            stepDone = stepDone | mergeRow(ints);
+            if (stepDone) {
+                compressRow(ints);
+            }
+        }
+
+        if (stepDone){
+            createNewNumber();
+        }
     }
 
     private void moveDown() {
