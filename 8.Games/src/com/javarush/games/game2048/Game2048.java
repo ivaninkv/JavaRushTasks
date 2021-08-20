@@ -6,6 +6,7 @@ public class Game2048 extends Game {
     private static final int SIDE = 4;
     private int[][] gameField = new int[SIDE][SIDE];
     private boolean isGameStopped = false;
+    private int score = 0;
 
     @Override
     public void initialize() {
@@ -41,6 +42,8 @@ public class Game2048 extends Game {
         gameField = new int[SIDE][SIDE];
         createNewNumber();
         createNewNumber();
+        score = 0;
+        setScore(0);
     }
 
     private void createNewNumber() {
@@ -79,6 +82,8 @@ public class Game2048 extends Game {
 
         for (int i = 1; i < row.length; i++) {
             if (row[i - 1] != 0 && row[i - 1] == row[i]) {
+                score += row[i - 1] + row[i];
+                setScore(score);
                 row[i - 1] = row[i - 1] + row[i];
                 row[i] = 0;
                 merged = true;
