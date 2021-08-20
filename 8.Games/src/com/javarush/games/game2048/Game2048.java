@@ -43,7 +43,7 @@ public class Game2048 extends Game {
     }
 
     private void createNewNumber() {
-        if (getMaxTileValue() == 2048){
+        if (getMaxTileValue() == 2048) {
             win();
         }
         boolean cellFound = false;
@@ -174,5 +174,37 @@ public class Game2048 extends Game {
     private void win() {
         isGameStopped = true;
         showMessageDialog(Color.WHITE, "You win!", Color.GREEN, 36);
+    }
+
+    private boolean canUserMove() {
+        boolean canUserMove = false;
+        for (int y = 0; y < SIDE; y++) {
+            for (int x = 0; x < SIDE; x++) {
+                if (gameField[y][x] == 0) {
+                    canUserMove = true;
+                    break;
+                }
+            }
+            if (canUserMove) {
+                break;
+            }
+        }
+        if (!canUserMove) {
+            for (int y = 1; y < SIDE; y++) {
+                for (int x = 1; x < SIDE; x++) {
+                    if (gameField[y][x] == gameField[y - 1][x] ||
+                            gameField[y][x] == gameField[y][x - 1] ||
+                            gameField[y - 1][x - 1] == gameField[y][x - 1] ||
+                            gameField[y - 1][x - 1] == gameField[y - 1][x]) {
+                        canUserMove = true;
+                        break;
+                    }
+                }
+                if (canUserMove) {
+                    break;
+                }
+            }
+        }
+        return canUserMove;
     }
 }
