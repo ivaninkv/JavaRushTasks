@@ -2,9 +2,12 @@ package com.javarush.games.game2048;
 
 import com.javarush.engine.cell.*;
 
+import java.util.Arrays;
+
 public class Game2048 extends Game {
     private static final int SIDE = 4;
     private int[][] gameField = new int[SIDE][SIDE];
+    private int[][] prevGameField = new int[SIDE][SIDE];
     private boolean isGameStopped = false;
     private int score = 0;
 
@@ -49,6 +52,7 @@ public class Game2048 extends Game {
     private void createNewNumber() {
         if (getMaxTileValue() == 2048) {
             win();
+            return;
         }
         boolean cellFound = false;
         while (!cellFound) {
@@ -101,24 +105,28 @@ public class Game2048 extends Game {
         switch (key) {
             case UP:
                 if (!isGameStopped) {
+                    savePrevGameField();
                     moveUp();
                     drawScene();
                 }
                 break;
             case DOWN:
-                if (!isGameStopped){
+                if (!isGameStopped) {
+                    savePrevGameField();
                     moveDown();
                     drawScene();
                 }
                 break;
             case LEFT:
-                if (!isGameStopped){
+                if (!isGameStopped) {
+                    savePrevGameField();
                     moveLeft();
                     drawScene();
                 }
                 break;
             case RIGHT:
-                if (!isGameStopped){
+                if (!isGameStopped) {
+                    savePrevGameField();
                     moveRight();
                     drawScene();
                 }
@@ -129,6 +137,9 @@ public class Game2048 extends Game {
                     createGame();
                     drawScene();
                 }
+                break;
+            case ESCAPE:
+                restorePrevGameField();
                 break;
             default:
                 break;
@@ -235,5 +246,18 @@ public class Game2048 extends Game {
     private void gameOver() {
         isGameStopped = true;
         showMessageDialog(Color.BLACK, "Game Over!", Color.RED, 36);
+    }
+
+    private void savePrevGameField() {
+        if (!isGameStopped) {
+            for (int y = 0; y < SIDE; y++) {
+                System.arraycopy(gameField[y], 0, prevGameField[y], 0, SIDE);
+            }
+        }
+    }
+
+    private void restorePrevGameField() {
+        gameField = prevGameField;
+        drawScene();
     }
 }
