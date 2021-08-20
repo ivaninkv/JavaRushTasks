@@ -38,6 +38,7 @@ public class Game2048 extends Game {
     }
 
     private void createGame() {
+        gameField = new int[SIDE][SIDE];
         createNewNumber();
         createNewNumber();
     }
@@ -91,24 +92,38 @@ public class Game2048 extends Game {
     public void onKeyPress(Key key) {
         if (!canUserMove()) {
             gameOver();
-            return;
         }
         switch (key) {
             case UP:
-                moveUp();
-                drawScene();
+                if (!isGameStopped) {
+                    moveUp();
+                    drawScene();
+                }
                 break;
             case DOWN:
-                moveDown();
-                drawScene();
+                if (!isGameStopped){
+                    moveDown();
+                    drawScene();
+                }
                 break;
             case LEFT:
-                moveLeft();
-                drawScene();
+                if (!isGameStopped){
+                    moveLeft();
+                    drawScene();
+                }
                 break;
             case RIGHT:
-                moveRight();
-                drawScene();
+                if (!isGameStopped){
+                    moveRight();
+                    drawScene();
+                }
+                break;
+            case SPACE:
+                if (isGameStopped) {
+                    isGameStopped = false;
+                    createGame();
+                    drawScene();
+                }
                 break;
             default:
                 break;
