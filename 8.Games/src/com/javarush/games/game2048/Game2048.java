@@ -1,8 +1,8 @@
 package com.javarush.games.game2048;
 
-import com.javarush.engine.cell.*;
-
-import java.util.Arrays;
+import com.javarush.engine.cell.Color;
+import com.javarush.engine.cell.Game;
+import com.javarush.engine.cell.Key;
 
 public class Game2048 extends Game {
     private static final int SIDE = 4;
@@ -139,7 +139,14 @@ public class Game2048 extends Game {
                 }
                 break;
             case ESCAPE:
-                restorePrevGameField();
+                if (!isGameStopped) {
+                    restorePrevGameField();
+                }
+                break;
+            case ENTER:
+                if (!isGameStopped) {
+                    runAutoPlay();
+                }
                 break;
             default:
                 break;
@@ -259,5 +266,13 @@ public class Game2048 extends Game {
     private void restorePrevGameField() {
         gameField = prevGameField;
         drawScene();
+    }
+
+    private void runAutoPlay() {
+        while (!isGameStopped) {
+            Key[] keys = new Key[]{Key.UP, Key.DOWN, Key.LEFT, Key.RIGHT};
+            Key key = keys[getRandomNumber(keys.length)];
+            onKeyPress(key);
+        }
     }
 }
