@@ -1,5 +1,6 @@
 package com.javarush.task.pro.task13.task1301;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 
@@ -23,11 +24,6 @@ public class Solution {
 
     public static HashSet<String> arrayToHashSet(String[] strings) {
         //напишите тут ваш код
-        HashSet<String> stringHashSet = new HashSet<>();
-        for (String str : strings) {
-            stringHashSet.add(str);
-        }
-
-        return stringHashSet;
+        return new HashSet<>(Arrays.asList(strings));
     }
 }
