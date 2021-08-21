@@ -249,7 +249,7 @@ public class Game2048 extends Game {
     }
 
     private void savePrevGameField() {
-        if (!isGameStopped) {
+        if (!isGameStopped && canUserMove()) {
             for (int y = 0; y < SIDE; y++) {
                 System.arraycopy(gameField[y], 0, prevGameField[y], 0, SIDE);
             }
