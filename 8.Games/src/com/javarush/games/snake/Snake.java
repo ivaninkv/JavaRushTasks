@@ -30,7 +30,9 @@ public class Snake {
     }
 
     public void setDirection(Direction direction) {
-        this.direction = direction;
+        if (this.direction.ordinal() % 2 != direction.ordinal() % 2) {
+            this.direction = direction;
+        }
     }
 
     public void move() {
