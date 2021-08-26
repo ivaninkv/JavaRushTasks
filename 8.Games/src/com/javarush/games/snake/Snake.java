@@ -37,7 +37,9 @@ public class Snake {
 
     public void move(Apple apple) {
         GameObject newHead = createNewHead();
-        if (newHead.x < 0 || newHead.y < 0 || newHead.x >= SnakeGame.WIDTH || newHead.y >= SnakeGame.HEIGHT) {
+        if (newHead.x < 0 || newHead.y < 0 ||
+                newHead.x >= SnakeGame.WIDTH || newHead.y >= SnakeGame.HEIGHT ||
+                checkCollision(newHead)) {
             isAlive = false;
             return;
         }
@@ -78,5 +80,17 @@ public class Snake {
 
     public void removeTail() {
         snakeParts.remove(snakeParts.size() - 1);
+    }
+
+    public boolean checkCollision(GameObject gameObject) {
+        boolean hasCollision = false;
+        for (GameObject snakePart : snakeParts) {
+            if (snakePart.x == gameObject.x && snakePart.y == gameObject.y) {
+                hasCollision = true;
+                break;
+            }
+        }
+
+        return hasCollision;
     }
 }
