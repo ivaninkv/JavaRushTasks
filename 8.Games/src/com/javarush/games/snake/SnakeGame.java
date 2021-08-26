@@ -6,6 +6,7 @@ import com.javarush.engine.cell.*;
 public class SnakeGame extends Game {
     private Snake snake;
     private int turnDelay;
+    private Apple apple;
 
     public static final int WIDTH = 15;
     public static final int HEIGHT = 15;
@@ -19,6 +20,7 @@ public class SnakeGame extends Game {
     private void createGame() {
         snake = new Snake(WIDTH / 2, HEIGHT / 2);
         turnDelay = 300;
+        apple = new Apple(5, 5);
         setTurnTimer(turnDelay);
         drawScene();
     }
@@ -30,11 +32,12 @@ public class SnakeGame extends Game {
             }
         }
         snake.draw(this);
+        apple.draw(this);
     }
 
     @Override
     public void onTurn(int step){
-        snake.move();
+        snake.move(apple);
         drawScene();
     }
 
