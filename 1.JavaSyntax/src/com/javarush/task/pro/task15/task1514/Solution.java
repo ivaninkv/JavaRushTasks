@@ -15,21 +15,14 @@ public class Solution {
         //напишите тут ваш код
         Path path1 = Path.of(str1);
         Path path2 = Path.of(str2);
-        Path result = null;
         try {
-            result = path1.relativize(path2);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        }
-        if (result == null) {
+            System.out.println(path1.relativize(path2));
+        } catch (Exception e) {
             try {
-                result = path2.relativize(path1);
-            } catch (IllegalArgumentException e) {
-                e.printStackTrace();
+                System.out.println(path2.relativize(path1));
+            } catch (Exception ignore) {
+
             }
-        }
-        if (result != null) {
-            System.out.println(result);
         }
     }
 }
