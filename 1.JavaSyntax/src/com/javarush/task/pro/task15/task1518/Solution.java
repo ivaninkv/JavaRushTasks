@@ -21,12 +21,7 @@ public class Solution {
         //напишите тут ваш код
         try (DirectoryStream<Path> files = Files.newDirectoryStream(directory)) {
             for (Path path : files) {
-                if (Files.isRegularFile(path)) {
-                    System.out.println(path + THIS_IS_FILE);
-                } else if (Files.isDirectory(path)) {
-                    System.out.println(path + THIS_IS_DIR);
-                }
-//                System.out.println(Files.isDirectory(path) ? path + THIS_IS_DIR : path + THIS_IS_FILE);
+                System.out.println(Files.isDirectory(path) ? path + THIS_IS_DIR : path + THIS_IS_FILE);
             }
         }
     }
