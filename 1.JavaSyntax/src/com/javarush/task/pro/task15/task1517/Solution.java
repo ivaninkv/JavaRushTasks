@@ -16,9 +16,7 @@ public class Solution {
         Path fileNewPath = Path.of(scanner.nextLine());
         //напишите тут ваш код
         if (Files.exists(fileNewPath)) {
-            if (Files.exists(filePath)) {
-                Files.delete(filePath);
-            }
+            Files.deleteIfExists(filePath);
             return;
         }
         if (Files.notExists(filePath)) {
