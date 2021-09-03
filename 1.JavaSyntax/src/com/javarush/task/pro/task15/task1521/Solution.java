@@ -18,8 +18,7 @@ public class Solution {
         //напишите тут ваш код
         URL url = new URL(line);
         InputStream inputStream = url.openStream();
-        byte[] bytes = inputStream.readAllBytes();
         Path tempFile = Files.createTempFile(null, null);
-        Files.write(tempFile, bytes);
+        Files.write(tempFile, inputStream.readAllBytes());
     }
 }
