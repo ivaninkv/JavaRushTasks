@@ -3,8 +3,6 @@ package com.javarush.task.pro.task15.task1523;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 
 /* 
 Получение информации по API
@@ -16,10 +14,13 @@ public class Solution {
         //напишите тут ваш код
         URLConnection urlConn = url.openConnection();
         urlConn.setDoOutput(true);
-        OutputStream outputStream = urlConn.getOutputStream();
-        outputStream.write("Hello from javarush!".getBytes());
-        InputStream inputStream = urlConn.getInputStream();
-        byte[] bytes = inputStream.readAllBytes();
-        System.out.println(new String(bytes));
+        try (OutputStream outputStream = urlConn.getOutputStream()) {
+            outputStream.write("Hello from javarush!".getBytes());
+        }
+        try (InputStream inputStream = urlConn.getInputStream()) {
+            byte[] bytes = inputStream.readAllBytes();
+            System.out.println(new String(bytes));
+        }
+
     }
 }
