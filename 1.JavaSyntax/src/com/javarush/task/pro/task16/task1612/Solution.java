@@ -23,8 +23,7 @@ public class Solution {
         //напишите тут ваш код
         Set<LocalDateTime> resultSet = new HashSet<>();
         for (Map.Entry<LocalDate, List<LocalTime>> entry : sourceMap.entrySet()) {
-            List<LocalTime> localTimes = entry.getValue();
-            for (LocalTime localTime : localTimes) {
+            for (LocalTime localTime : entry.getValue()) {
                 resultSet.add(LocalDateTime.of(entry.getKey(), localTime));
             }
         }
