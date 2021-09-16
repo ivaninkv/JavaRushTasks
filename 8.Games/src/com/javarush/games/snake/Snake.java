@@ -31,6 +31,12 @@ public class Snake {
 
     public void setDirection(Direction direction) {
         if (this.direction.ordinal() % 2 != direction.ordinal() % 2) {
+            if (((this.direction == Direction.LEFT || this.direction == Direction.RIGHT) &&
+                    snakeParts.get(0).x == snakeParts.get(1).x) ||
+                    ((this.direction == Direction.UP || this.direction == Direction.DOWN) &&
+                            snakeParts.get(0).y == snakeParts.get(1).y)) {
+                return;
+            }
             this.direction = direction;
         }
     }
