@@ -8,6 +8,7 @@ public class SnakeGame extends Game {
     private int turnDelay;
     private Apple apple;
     private boolean isGameStopped;
+    private static final int GOAL = 28;
 
 
     public static final int WIDTH = 15;
@@ -47,6 +48,9 @@ public class SnakeGame extends Game {
         if (!snake.isAlive) {
             gameOver();
         }
+        if (snake.getLength() > GOAL) {
+            win();
+        }
         drawScene();
     }
 
@@ -80,5 +84,11 @@ public class SnakeGame extends Game {
         stopTurnTimer();
         isGameStopped = true;
         showMessageDialog(Color.RED, "Game Over!", Color.WHITE, 36);
+    }
+
+    private void win() {
+        stopTurnTimer();
+        isGameStopped = true;
+        showMessageDialog(Color.GREEN, "You Win!", Color.WHITE, 36);
     }
 }

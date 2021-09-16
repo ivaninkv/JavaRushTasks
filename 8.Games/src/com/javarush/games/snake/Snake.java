@@ -93,4 +93,8 @@ public class Snake {
 
         return hasCollision;
     }
+
+    public int getLength() {
+        return snakeParts.size();
+    }
 }
