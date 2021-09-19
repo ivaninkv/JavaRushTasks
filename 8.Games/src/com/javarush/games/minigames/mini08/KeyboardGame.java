@@ -27,35 +27,23 @@ public class KeyboardGame extends Game {
         int height = getScreenHeight();
         switch (key) {
             case LEFT:
-//                for (int y = 0; y < getScreenHeight(); y++) {
-//                    setCellColor(0, y, Color.GREEN);
-//                }
-                for (int y = 0; y < 3; y++) {
+                for (int y = 0; y < height; y++) {
                     setCellColor(0, y, Color.GREEN);
                 }
                 break;
             case RIGHT:
-//                for (int y = 0; y < getScreenHeight(); y++) {
-//                    setCellColor(getScreenWidth() - 1, y, Color.GREEN);
-//                }
-                for (int y = 0; y < 3; y++) {
-                    setCellColor(3 - 1, y, Color.GREEN);
+                for (int y = 0; y < height; y++) {
+                    setCellColor(width - 1, y, Color.GREEN);
                 }
                 break;
             case UP:
-//                for (int x = 0; x < getScreenWidth(); x++) {
-//                    setCellColor(x, 0, Color.GREEN);
-//                }
-                for (int x = 0; x < 3; x++) {
+                for (int x = 0; x < width; x++) {
                     setCellColor(x, 0, Color.GREEN);
                 }
                 break;
             case DOWN:
-//                for (int x = 0; x < getScreenWidth(); x++) {
-//                    setCellColor(x, getScreenHeight() - 1, Color.GREEN);
-//                }
-                for (int x = 0; x < 3; x++) {
-                    setCellColor(x, 3 - 1, Color.GREEN);
+                for (int x = 0; x < width; x++) {
+                    setCellColor(x, height - 1, Color.GREEN);
                 }
                 break;
             default:
