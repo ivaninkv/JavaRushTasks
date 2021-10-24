@@ -13,13 +13,10 @@ public class Solution {
         //напишите тут ваш код
         Scanner console = new Scanner(System.in);
         String catName;
-        do {
-            catName = console.nextLine();
-            if (!catName.equals("")) {
-                Cat cat = CatFactory.getCatByKey(catName);
-                System.out.println(cat.toString());
-            }
-        } while (!catName.equals(""));
+        while (!(catName = console.nextLine()).equals("")){
+            Cat cat = CatFactory.getCatByKey(catName);
+            System.out.println(cat.toString());
+        }
     }
 
     static class CatFactory {
