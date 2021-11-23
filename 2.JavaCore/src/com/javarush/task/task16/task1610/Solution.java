@@ -33,6 +33,8 @@ public class Solution {
             System.out.println(getName() + " родила 2 котят");
             try {
                 initAllKittens();
+                kitten1.join();
+                kitten2.join();
             } catch (InterruptedException e) {
             }
             System.out.println(getName() + ": Все котята в корзинке. " + getName() + " собрала их назад");
@@ -40,9 +42,7 @@ public class Solution {
 
         private void initAllKittens() throws InterruptedException {
             kitten1.start();
-            kitten1.join();
             kitten2.start();
-            kitten2.join();
         }
     }
 
