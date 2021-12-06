@@ -9,8 +9,7 @@ public class Solution {
 
     public static void main(String[] args) throws InterruptedException {
         for (int i = 0; i < COUNT; i++) {
-            SleepingThread sleepingThread = new SleepingThread();
-            sleepingThread.join();
+            new SleepingThread().join();
         }
     }
 
