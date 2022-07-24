@@ -13,7 +13,7 @@ public class AmigoOutputStream extends FileOutputStream {
     private FileOutputStream original;
 
     public AmigoOutputStream(FileOutputStream fos) throws FileNotFoundException {
-        super(String.valueOf(fos));
+        super(fileName);
         this.original = fos;
     }
 
